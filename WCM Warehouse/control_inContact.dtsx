@@ -1,0 +1,2098 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="4/7/2020 12:59:42 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="T490-0119"
+  DTS:CreatorName="WYNDHAMCAPITAL\ptracy"
+  DTS:DTSID="{51046E9E-4D86-4752-B812-FEC78A0A3BCD}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.71"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="control_inContact_extracts"
+  DTS:PackageType="5"
+  DTS:VersionBuild="60"
+  DTS:VersionGUID="{9419A0C4-B424-4D07-9AEF-8B0C0BC980E5}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[etl]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{936CEF0E-2D1F-4D3F-98E0-1F8575C415FA}"
+      DTS:ObjectName="etl">
+      <DTS:PropertyExpression
+        DTS:Name="InitialCatalog">@[$Project::etlDatabaseName]</DTS:PropertyExpression>
+      <DTS:PropertyExpression
+        DTS:Name="Password">@[$Project::etlDatabasePassword]</DTS:PropertyExpression>
+      <DTS:PropertyExpression
+        DTS:Name="ServerName">@[$Project::etlDatabaseServer]</DTS:PropertyExpression>
+      <DTS:PropertyExpression
+        DTS:Name="UserName">@[$Project::etlDatabaseUserId]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=emsql2;User ID=etl;Initial Catalog=etl;Provider=SQLNCLI11.1;Auto Translate=False;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAIBTk5/5Ubkq2DGVUfAg5GwAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAACg96ePyQezntfguZz0oOsQAAAAAASAAACgAAAAEAAAAAWGZaWYOX8PklYICD94ur8gAAAA3y1PXJMeIpQ0K4lahMF8y9OwWK2WQzrbP7qkMCfM3ZAUAAAAyNNhLiR7t+meuKS+hQ6EdaLslII</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:PackageParameters>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="8"
+      DTS:DTSID="{56120C42-E23F-4334-85BA-FBEBFD768C2C}"
+      DTS:ObjectName="authToken">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="ParameterValue"
+        xml:space="preserve"></DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="3"
+      DTS:DTSID="{B57CD345-62F2-47A4-BC44-D296348741AA}"
+      DTS:ObjectName="etlControlId">
+      <DTS:Property
+        DTS:DataType="3"
+        DTS:Name="ParameterValue">0</DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="7"
+      DTS:DTSID="{5F8B9879-6964-4F1C-990E-D99B93E6BF5E}"
+      DTS:ObjectName="extractEndDate">
+      <DTS:Property
+        DTS:DataType="7"
+        DTS:Name="ParameterValue">4/8/2020 2:40:14 PM</DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="7"
+      DTS:DTSID="{48FA7EFF-1EE5-4661-B76C-E1B31034A32B}"
+      DTS:ObjectName="extractStartDate">
+      <DTS:Property
+        DTS:DataType="7"
+        DTS:Name="ParameterValue">4/8/2020 2:40:04 PM</DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="3"
+      DTS:DTSID="{A95D3A93-6ED4-4D3E-864D-07F3F55DD067}"
+      DTS:ObjectName="reportId">
+      <DTS:Property
+        DTS:DataType="3"
+        DTS:Name="ParameterValue">0</DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="8"
+      DTS:DTSID="{7A52AB4F-B5D2-4475-B533-351BE08A8381}"
+      DTS:ObjectName="requestURL">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="ParameterValue"
+        xml:space="preserve"></DTS:Property>
+    </DTS:PackageParameter>
+  </DTS:PackageParameters>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{84600186-9AF3-4E6F-B685-20E7B8565971}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="inContactAuthToken">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{1943A1C1-BA88-406D-8F40-501017866D77}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="inContactRequestURL">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\extract_incontact_agent"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="extract_incontact_agent"
+      DTS:DTSID="{37F4F4AD-56D4-4AC6-9B38-3E10932B7D8F}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="extract_incontact_agent"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>extract_inContact_agent.dtsx</PackageName>
+          <ParameterAssignment>
+            <ParameterName>authToken</ParameterName>
+            <BindedVariableOrParameterName>User::inContactAuthToken</BindedVariableOrParameterName>
+          </ParameterAssignment>
+          <ParameterAssignment>
+            <ParameterName>requestURL</ParameterName>
+            <BindedVariableOrParameterName>User::inContactRequestURL</BindedVariableOrParameterName>
+          </ParameterAssignment>
+          <ParameterAssignment>
+            <ParameterName>etlControlId</ParameterName>
+            <BindedVariableOrParameterName>$Package::etlControlId</BindedVariableOrParameterName>
+          </ParameterAssignment>
+          <ParameterAssignment>
+            <ParameterName>extractStartDate</ParameterName>
+            <BindedVariableOrParameterName>$Package::extractStartDate</BindedVariableOrParameterName>
+          </ParameterAssignment>
+          <ParameterAssignment>
+            <ParameterName>extractEndDate</ParameterName>
+            <BindedVariableOrParameterName>$Package::extractEndDate</BindedVariableOrParameterName>
+          </ParameterAssignment>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\extract_incontact_agentStateCode"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="extract_incontact_agentStateCode"
+      DTS:DTSID="{f5edc629-c798-4e97-b74f-54348bd7aacd}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="extract_incontact_agentStateCode"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>extract_inContact_agentStateCode.dtsx</PackageName>
+          <ParameterAssignment>
+            <ParameterName>authToken</ParameterName>
+            <BindedVariableOrParameterName>User::inContactAuthToken</BindedVariableOrParameterName>
+          </ParameterAssignment>
+          <ParameterAssignment>
+            <ParameterName>requestURL</ParameterName>
+            <BindedVariableOrParameterName>User::inContactRequestURL</BindedVariableOrParameterName>
+          </ParameterAssignment>
+          <ParameterAssignment>
+            <ParameterName>etlControlId</ParameterName>
+            <BindedVariableOrParameterName>$Package::etlControlId</BindedVariableOrParameterName>
+          </ParameterAssignment>
+          <ParameterAssignment>
+            <ParameterName>extractStartDate</ParameterName>
+            <BindedVariableOrParameterName>$Package::extractStartDate</BindedVariableOrParameterName>
+          </ParameterAssignment>
+          <ParameterAssignment>
+            <ParameterName>extractEndDate</ParameterName>
+            <BindedVariableOrParameterName>$Package::extractEndDate</BindedVariableOrParameterName>
+          </ParameterAssignment>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\extract_incontact_campaign"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="extract_incontact_campaign"
+      DTS:DTSID="{41f362db-5acd-41b2-826d-52161225a3d6}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="extract_incontact_campaign"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>extract_inContact_campaign.dtsx</PackageName>
+          <ParameterAssignment>
+            <ParameterName>authToken</ParameterName>
+            <BindedVariableOrParameterName>User::inContactAuthToken</BindedVariableOrParameterName>
+          </ParameterAssignment>
+          <ParameterAssignment>
+            <ParameterName>requestURL</ParameterName>
+            <BindedVariableOrParameterName>User::inContactRequestURL</BindedVariableOrParameterName>
+          </ParameterAssignment>
+          <ParameterAssignment>
+            <ParameterName>etlControlId</ParameterName>
+            <BindedVariableOrParameterName>$Package::etlControlId</BindedVariableOrParameterName>
+          </ParameterAssignment>
+          <ParameterAssignment>
+            <ParameterName>extractStartDate</ParameterName>
+            <BindedVariableOrParameterName>$Package::extractStartDate</BindedVariableOrParameterName>
+          </ParameterAssignment>
+          <ParameterAssignment>
+            <ParameterName>extractEndDate</ParameterName>
+            <BindedVariableOrParameterName>$Package::extractEndDate</BindedVariableOrParameterName>
+          </ParameterAssignment>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\extract_inContact_cdrPlusDisposition"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="CDR Data from inContact"
+      DTS:DTSID="{E13B6003-4A14-482B-9AF5-F6AB5D0431FC}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="extract_inContact_cdrPlusDisposition"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>extract_inContact_cdrPlusDisposition.dtsx</PackageName>
+          <ParameterAssignment>
+            <ParameterName>authToken</ParameterName>
+            <BindedVariableOrParameterName>User::inContactAuthToken</BindedVariableOrParameterName>
+          </ParameterAssignment>
+          <ParameterAssignment>
+            <ParameterName>etlControlId</ParameterName>
+            <BindedVariableOrParameterName>$Package::etlControlId</BindedVariableOrParameterName>
+          </ParameterAssignment>
+          <ParameterAssignment>
+            <ParameterName>extractEndDate</ParameterName>
+            <BindedVariableOrParameterName>$Package::extractEndDate</BindedVariableOrParameterName>
+          </ParameterAssignment>
+          <ParameterAssignment>
+            <ParameterName>extractStartDate</ParameterName>
+            <BindedVariableOrParameterName>$Package::extractStartDate</BindedVariableOrParameterName>
+          </ParameterAssignment>
+          <ParameterAssignment>
+            <ParameterName>requestURL</ParameterName>
+            <BindedVariableOrParameterName>User::inContactRequestURL</BindedVariableOrParameterName>
+          </ParameterAssignment>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\extract_incontact_mediaType"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="extract_incontact_mediaType"
+      DTS:DTSID="{402d7bf4-1ac5-4f0b-9e6c-fb961715e689}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="extract_incontact_mediaType"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>extract_inContact_mediaType.dtsx</PackageName>
+          <ParameterAssignment>
+            <ParameterName>authToken</ParameterName>
+            <BindedVariableOrParameterName>User::inContactAuthToken</BindedVariableOrParameterName>
+          </ParameterAssignment>
+          <ParameterAssignment>
+            <ParameterName>requestURL</ParameterName>
+            <BindedVariableOrParameterName>User::inContactRequestURL</BindedVariableOrParameterName>
+          </ParameterAssignment>
+          <ParameterAssignment>
+            <ParameterName>etlControlId</ParameterName>
+            <BindedVariableOrParameterName>$Package::etlControlId</BindedVariableOrParameterName>
+          </ParameterAssignment>
+          <ParameterAssignment>
+            <ParameterName>extractStartDate</ParameterName>
+            <BindedVariableOrParameterName>$Package::extractStartDate</BindedVariableOrParameterName>
+          </ParameterAssignment>
+          <ParameterAssignment>
+            <ParameterName>extractEndDate</ParameterName>
+            <BindedVariableOrParameterName>$Package::extractEndDate</BindedVariableOrParameterName>
+          </ParameterAssignment>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\extract_incontact_PointOfContact"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="extract_incontact_PointOfContact"
+      DTS:DTSID="{5d9ae51c-981c-48f4-9404-b75afd12b326}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="extract_incontact_PointOfContact"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>extract_inContact_PointOfContact.dtsx</PackageName>
+          <ParameterAssignment>
+            <ParameterName>authToken</ParameterName>
+            <BindedVariableOrParameterName>User::inContactAuthToken</BindedVariableOrParameterName>
+          </ParameterAssignment>
+          <ParameterAssignment>
+            <ParameterName>requestURL</ParameterName>
+            <BindedVariableOrParameterName>User::inContactRequestURL</BindedVariableOrParameterName>
+          </ParameterAssignment>
+          <ParameterAssignment>
+            <ParameterName>etlControlId</ParameterName>
+            <BindedVariableOrParameterName>$Package::etlControlId</BindedVariableOrParameterName>
+          </ParameterAssignment>
+          <ParameterAssignment>
+            <ParameterName>extractStartDate</ParameterName>
+            <BindedVariableOrParameterName>$Package::extractStartDate</BindedVariableOrParameterName>
+          </ParameterAssignment>
+          <ParameterAssignment>
+            <ParameterName>extractEndDate</ParameterName>
+            <BindedVariableOrParameterName>$Package::extractEndDate</BindedVariableOrParameterName>
+          </ParameterAssignment>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\extract_incontact_skill"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="extract_incontact_skill"
+      DTS:DTSID="{4cc3ee9c-d693-4af6-a032-4433cff95921}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="extract_incontact_skill"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>extract_inContact_skill.dtsx</PackageName>
+          <ParameterAssignment>
+            <ParameterName>authToken</ParameterName>
+            <BindedVariableOrParameterName>User::inContactAuthToken</BindedVariableOrParameterName>
+          </ParameterAssignment>
+          <ParameterAssignment>
+            <ParameterName>requestURL</ParameterName>
+            <BindedVariableOrParameterName>User::inContactRequestURL</BindedVariableOrParameterName>
+          </ParameterAssignment>
+          <ParameterAssignment>
+            <ParameterName>etlControlId</ParameterName>
+            <BindedVariableOrParameterName>$Package::etlControlId</BindedVariableOrParameterName>
+          </ParameterAssignment>
+          <ParameterAssignment>
+            <ParameterName>extractStartDate</ParameterName>
+            <BindedVariableOrParameterName>$Package::extractStartDate</BindedVariableOrParameterName>
+          </ParameterAssignment>
+          <ParameterAssignment>
+            <ParameterName>extractEndDate</ParameterName>
+            <BindedVariableOrParameterName>$Package::extractEndDate</BindedVariableOrParameterName>
+          </ParameterAssignment>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\extract_incontact_team"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="extract_incontact_team"
+      DTS:DTSID="{3fb347c3-1f46-4dd2-904e-390d1149e911}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="extract_incontact_team"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>extract_inContact_team.dtsx</PackageName>
+          <ParameterAssignment>
+            <ParameterName>authToken</ParameterName>
+            <BindedVariableOrParameterName>User::inContactAuthToken</BindedVariableOrParameterName>
+          </ParameterAssignment>
+          <ParameterAssignment>
+            <ParameterName>requestURL</ParameterName>
+            <BindedVariableOrParameterName>User::inContactRequestURL</BindedVariableOrParameterName>
+          </ParameterAssignment>
+          <ParameterAssignment>
+            <ParameterName>etlControlId</ParameterName>
+            <BindedVariableOrParameterName>$Package::etlControlId</BindedVariableOrParameterName>
+          </ParameterAssignment>
+          <ParameterAssignment>
+            <ParameterName>extractStartDate</ParameterName>
+            <BindedVariableOrParameterName>$Package::extractStartDate</BindedVariableOrParameterName>
+          </ParameterAssignment>
+          <ParameterAssignment>
+            <ParameterName>extractEndDate</ParameterName>
+            <BindedVariableOrParameterName>$Package::extractEndDate</BindedVariableOrParameterName>
+          </ParameterAssignment>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Get Auth Token"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="Get Authorization Token from inContact"
+      DTS:DTSID="{1AB3EECD-888F-497F-8EF1-FEA83C128A01}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Get Auth Token"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>control_inContact_getAuthToken.dtsx</PackageName>
+          <ParameterAssignment>
+            <ParameterName>etlControlId</ParameterName>
+            <BindedVariableOrParameterName>$Package::etlControlId</BindedVariableOrParameterName>
+          </ParameterAssignment>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\load_incontact_dimAgent"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="load_incontact_dimAgent"
+      DTS:DTSID="{c76cd76e-8a5f-43a1-a039-4dd08052877d}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="load_incontact_dimAgent"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>load_inContact_dimAgent.dtsx</PackageName>
+          <ParameterAssignment>
+            <ParameterName>etlControlId</ParameterName>
+            <BindedVariableOrParameterName>$Package::etlControlId</BindedVariableOrParameterName>
+          </ParameterAssignment>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\load_incontact_dimAgentStateCode"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="load_incontact_dimAgentStateCode"
+      DTS:DTSID="{d701f4fd-8594-48ce-b325-6ae99081ed2c}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="load_incontact_dimAgentStateCode"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>load_inContact_dimAgentStateCode.dtsx</PackageName>
+          <ParameterAssignment>
+            <ParameterName>etlControlId</ParameterName>
+            <BindedVariableOrParameterName>$Package::etlControlId</BindedVariableOrParameterName>
+          </ParameterAssignment>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\load_incontact_dimCampaign"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="load_incontact_dimCampaign"
+      DTS:DTSID="{038b64d7-8ac8-4f9d-aa36-dfe0527300c1}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="load_incontact_dimCampaign"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>load_inContact_dimCampaign.dtsx</PackageName>
+          <ParameterAssignment>
+            <ParameterName>etlControlId</ParameterName>
+            <BindedVariableOrParameterName>$Package::etlControlId</BindedVariableOrParameterName>
+          </ParameterAssignment>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\load_incontact_dimDisposition"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="load_incontact_dimDisposition"
+      DTS:DTSID="{60a7a974-2896-406d-8b15-3ca555632bc3}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="load_incontact_dimDisposition"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>load_inContact_dimDisposition.dtsx</PackageName>
+          <ParameterAssignment>
+            <ParameterName>etlControlId</ParameterName>
+            <BindedVariableOrParameterName>$Package::etlControlId</BindedVariableOrParameterName>
+          </ParameterAssignment>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\load_incontact_dimMediaType"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="load_incontact_dimMediaType"
+      DTS:DTSID="{8aedcfd5-8f67-4aec-99a2-c6025a52a193}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="load_incontact_dimMediaType"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>load_inContact_dimMediaType.dtsx</PackageName>
+          <ParameterAssignment>
+            <ParameterName>etlControlId</ParameterName>
+            <BindedVariableOrParameterName>$Package::etlControlId</BindedVariableOrParameterName>
+          </ParameterAssignment>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\load_incontact_dimPointOfContact"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="load_incontact_dimPointOfContact"
+      DTS:DTSID="{9c76d92e-acb1-443e-9cb2-48d3c84ef780}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="load_incontact_dimPointOfContact"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>load_inContact_dimPointOfContact.dtsx</PackageName>
+          <ParameterAssignment>
+            <ParameterName>etlControlId</ParameterName>
+            <BindedVariableOrParameterName>$Package::etlControlId</BindedVariableOrParameterName>
+          </ParameterAssignment>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\load_incontact_dimSkill"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="load_incontact_dimSkill"
+      DTS:DTSID="{cca886f8-84c7-4387-b275-99e3dcb42153}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="load_incontact_dimSkill"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>load_inContact_dimSkill.dtsx</PackageName>
+          <ParameterAssignment>
+            <ParameterName>etlControlId</ParameterName>
+            <BindedVariableOrParameterName>$Package::etlControlId</BindedVariableOrParameterName>
+          </ParameterAssignment>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\load_incontact_dimTeam"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="load_incontact_dimTeam"
+      DTS:DTSID="{8d293fe9-a132-4183-b553-a32d2d04fc15}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="load_incontact_dimTeam"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>load_inContact_dimTeam.dtsx</PackageName>
+          <ParameterAssignment>
+            <ParameterName>etlControlId</ParameterName>
+            <BindedVariableOrParameterName>$Package::etlControlId</BindedVariableOrParameterName>
+          </ParameterAssignment>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\load_incontact_factCDR"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="load_incontact_factCDR"
+      DTS:DTSID="{5782f9c2-cca3-4ae1-918b-c54f8ef68b70}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="load_incontact_factCDR"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>load_inContact_factCDR.dtsx</PackageName>
+          <ParameterAssignment>
+            <ParameterName>etlControlId</ParameterName>
+            <BindedVariableOrParameterName>$Package::etlControlId</BindedVariableOrParameterName>
+          </ParameterAssignment>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\transform_incontact_dimAgent"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="transform_incontact_dimAgent"
+      DTS:DTSID="{f84aa822-5552-40f8-97fb-bd47090ea19c}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="transform_incontact_dimAgent"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>transform_inContact_dimAgent.dtsx</PackageName>
+          <ParameterAssignment>
+            <ParameterName>etlControlId</ParameterName>
+            <BindedVariableOrParameterName>$Package::etlControlId</BindedVariableOrParameterName>
+          </ParameterAssignment>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\transform_incontact_dimAgentStateCode"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="transform_incontact_dimAgentStateCode"
+      DTS:DTSID="{27529358-e3d7-4eea-bf15-388fc5db02ba}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="transform_incontact_dimAgentStateCode"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>transform_inContact_dimAgentStateCode.dtsx</PackageName>
+          <ParameterAssignment>
+            <ParameterName>etlControlId</ParameterName>
+            <BindedVariableOrParameterName>$Package::etlControlId</BindedVariableOrParameterName>
+          </ParameterAssignment>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\transform_incontact_dimCampaign"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="transform_incontact_dimCampaign"
+      DTS:DTSID="{1d41366d-39f2-41b6-a270-92cb5882fdd5}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="transform_incontact_dimCampaign"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>transform_inContact_dimCampaign.dtsx</PackageName>
+          <ParameterAssignment>
+            <ParameterName>etlControlId</ParameterName>
+            <BindedVariableOrParameterName>$Package::etlControlId</BindedVariableOrParameterName>
+          </ParameterAssignment>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\transform_incontact_dimDisposition"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="transform_incontact_dimDisposition"
+      DTS:DTSID="{76b9bdc1-e3a8-4357-ba00-6c9d10fd2c22}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="transform_incontact_dimDisposition"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>transform_inContact_dimDisposition.dtsx</PackageName>
+          <ParameterAssignment>
+            <ParameterName>etlControlId</ParameterName>
+            <BindedVariableOrParameterName>$Package::etlControlId</BindedVariableOrParameterName>
+          </ParameterAssignment>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\transform_incontact_dimMediaType"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="transform_incontact_dimMediaType"
+      DTS:DTSID="{672b3be3-6cf2-45ac-bf7e-ea3607c9960b}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="transform_incontact_dimMediaType"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>transform_inContact_dimMediaType.dtsx</PackageName>
+          <ParameterAssignment>
+            <ParameterName>etlControlId</ParameterName>
+            <BindedVariableOrParameterName>$Package::etlControlId</BindedVariableOrParameterName>
+          </ParameterAssignment>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\transform_incontact_dimPointOfContact"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="transform_incontact_dimPointOfContact"
+      DTS:DTSID="{ecb9a285-9694-491d-915f-c934a2fca2f1}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="transform_incontact_dimPointOfContact"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>transform_inContact_dimPointOfContact.dtsx</PackageName>
+          <ParameterAssignment>
+            <ParameterName>etlControlId</ParameterName>
+            <BindedVariableOrParameterName>$Package::etlControlId</BindedVariableOrParameterName>
+          </ParameterAssignment>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\transform_incontact_dimSkill"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="transform_incontact_dimSkill"
+      DTS:DTSID="{35ef6345-9ca5-4740-8dc0-d47478eec60c}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="transform_incontact_dimSkill"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>transform_inContact_dimSkill.dtsx</PackageName>
+          <ParameterAssignment>
+            <ParameterName>etlControlId</ParameterName>
+            <BindedVariableOrParameterName>$Package::etlControlId</BindedVariableOrParameterName>
+          </ParameterAssignment>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\transform_incontact_dimTeam"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="transform_incontact_team"
+      DTS:DTSID="{b006ffa5-fb47-48d4-a0b4-4c4a32aec781}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="transform_incontact_dimTeam"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>transform_inContact_dimTeam.dtsx</PackageName>
+          <ParameterAssignment>
+            <ParameterName>etlControlId</ParameterName>
+            <BindedVariableOrParameterName>$Package::etlControlId</BindedVariableOrParameterName>
+          </ParameterAssignment>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\transform_incontact_FactCDR"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="transform_incontact_FactCDR"
+      DTS:DTSID="{3e43f4bb-8e80-4b17-b580-5c9ba136ef84}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="transform_incontact_FactCDR"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>transform_inContact_factCDR.dtsx</PackageName>
+          <ParameterAssignment>
+            <ParameterName>etlControlId</ParameterName>
+            <BindedVariableOrParameterName>$Package::etlControlId</BindedVariableOrParameterName>
+          </ParameterAssignment>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{C5555D23-46ED-426B-8D0F-8B52D041BB13}"
+      DTS:From="Package\Get Auth Token"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\extract_incontact_agent" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{B02CC7F0-D11F-44B7-96E2-8A0BF84C6F55}"
+      DTS:From="Package\extract_incontact_agent"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\extract_incontact_team" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 10]"
+      DTS:CreationName=""
+      DTS:DTSID="{CF6F7EEA-AAE8-4FC7-B286-4B18D5660A84}"
+      DTS:From="Package\extract_incontact_mediaType"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 10"
+      DTS:To="Package\transform_incontact_dimMediaType" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 11]"
+      DTS:CreationName=""
+      DTS:DTSID="{A5D439DD-617E-4C35-8658-F2C36E02C5A8}"
+      DTS:From="Package\extract_incontact_skill"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 11"
+      DTS:To="Package\transform_incontact_dimSkill" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 12]"
+      DTS:CreationName=""
+      DTS:DTSID="{732F04D4-DDE9-43AA-8BD9-FD78A991A8AF}"
+      DTS:From="Package\extract_incontact_agentStateCode"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 12"
+      DTS:To="Package\transform_incontact_dimAgentStateCode" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 13]"
+      DTS:CreationName=""
+      DTS:DTSID="{6F6E593B-BF58-4123-A1CD-65C62FFEE82A}"
+      DTS:From="Package\extract_incontact_PointOfContact"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 13"
+      DTS:To="Package\extract_inContact_cdrPlusDisposition" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 14]"
+      DTS:CreationName=""
+      DTS:DTSID="{FF7F0F53-F217-4F4A-A4E5-E7E645C9FC71}"
+      DTS:From="Package\extract_incontact_PointOfContact"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 14"
+      DTS:To="Package\transform_incontact_dimPointOfContact" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 15]"
+      DTS:CreationName=""
+      DTS:DTSID="{BC85C925-3D44-4D28-B30F-E83EAE72825E}"
+      DTS:From="Package\extract_inContact_cdrPlusDisposition"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 15"
+      DTS:To="Package\transform_incontact_dimDisposition" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 16]"
+      DTS:CreationName=""
+      DTS:DTSID="{6723DC53-9E92-4788-8706-8DD58BA710FD}"
+      DTS:From="Package\extract_inContact_cdrPlusDisposition"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 16"
+      DTS:To="Package\transform_incontact_FactCDR" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 17]"
+      DTS:CreationName=""
+      DTS:DTSID="{4D64961D-C87B-4180-8FA8-630D91B5B12A}"
+      DTS:From="Package\transform_incontact_dimAgent"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 17"
+      DTS:To="Package\load_incontact_dimAgent" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 18]"
+      DTS:CreationName=""
+      DTS:DTSID="{DD80D0DD-038B-4AC4-B01D-AFDB26FEE45A}"
+      DTS:From="Package\transform_incontact_dimTeam"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 18"
+      DTS:To="Package\load_incontact_dimTeam" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 19]"
+      DTS:CreationName=""
+      DTS:DTSID="{810D2339-A553-487E-B157-408B43F91600}"
+      DTS:From="Package\transform_incontact_dimCampaign"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 19"
+      DTS:To="Package\load_incontact_dimCampaign" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{BE7C9E2A-BC4F-40C9-B78E-D8FE22F4488B}"
+      DTS:From="Package\extract_incontact_team"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\extract_incontact_campaign" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 20]"
+      DTS:CreationName=""
+      DTS:DTSID="{3D576043-BAA6-4DA0-9185-5BE660E4FC04}"
+      DTS:From="Package\transform_incontact_dimMediaType"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 20"
+      DTS:To="Package\load_incontact_dimMediaType" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 21]"
+      DTS:CreationName=""
+      DTS:DTSID="{6C53D07C-B704-43EC-9849-586981AD3406}"
+      DTS:From="Package\transform_incontact_dimSkill"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 21"
+      DTS:To="Package\load_incontact_dimSkill" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 22]"
+      DTS:CreationName=""
+      DTS:DTSID="{31C73036-321E-4497-8423-E740494B8BDB}"
+      DTS:From="Package\transform_incontact_dimAgentStateCode"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 22"
+      DTS:To="Package\load_incontact_dimAgentStateCode" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 23]"
+      DTS:CreationName=""
+      DTS:DTSID="{2F321540-9156-4255-BB4B-AD311D2EE78F}"
+      DTS:From="Package\transform_incontact_dimPointOfContact"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 23"
+      DTS:To="Package\load_incontact_dimPointOfContact" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 24]"
+      DTS:CreationName=""
+      DTS:DTSID="{115E6534-11CF-4501-ACE8-AE89871A8FAC}"
+      DTS:From="Package\transform_incontact_dimDisposition"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 24"
+      DTS:To="Package\load_incontact_dimDisposition" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 25]"
+      DTS:CreationName=""
+      DTS:DTSID="{D33CC8E9-E6E5-4D2A-81BD-EFE38C0F6200}"
+      DTS:From="Package\transform_incontact_FactCDR"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 25"
+      DTS:To="Package\load_incontact_factCDR" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 26]"
+      DTS:CreationName=""
+      DTS:DTSID="{B6747966-2C23-467D-892C-CCDC93900B64}"
+      DTS:From="Package\load_incontact_dimAgent"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 26"
+      DTS:To="Package\load_incontact_factCDR" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 27]"
+      DTS:CreationName=""
+      DTS:DTSID="{54DF380E-D4DE-4421-81C0-C165D9043AB5}"
+      DTS:From="Package\load_incontact_dimTeam"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 27"
+      DTS:To="Package\load_incontact_factCDR" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 28]"
+      DTS:CreationName=""
+      DTS:DTSID="{FF610FE0-DA82-4A54-96A2-C6DFC12A1CC2}"
+      DTS:From="Package\load_incontact_dimCampaign"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 28"
+      DTS:To="Package\load_incontact_factCDR" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 29]"
+      DTS:CreationName=""
+      DTS:DTSID="{0627A147-55A6-4F9F-9C8F-AD0638158B59}"
+      DTS:From="Package\load_incontact_dimMediaType"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 29"
+      DTS:To="Package\load_incontact_factCDR" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{98609AE4-4FF2-4B88-A47D-15CC6A2B2F35}"
+      DTS:From="Package\extract_incontact_campaign"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\extract_incontact_mediaType" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 30]"
+      DTS:CreationName=""
+      DTS:DTSID="{5DB2A4CC-343E-4DEC-A3BB-B0752806C12C}"
+      DTS:From="Package\load_incontact_dimSkill"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 30"
+      DTS:To="Package\load_incontact_factCDR" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 31]"
+      DTS:CreationName=""
+      DTS:DTSID="{475F1C58-3B2E-45D9-9F33-52BE0489C845}"
+      DTS:From="Package\load_incontact_dimAgentStateCode"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 31"
+      DTS:To="Package\load_incontact_factCDR" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 32]"
+      DTS:CreationName=""
+      DTS:DTSID="{AE1EFF8A-319E-4CC5-871B-0D9A517D4A56}"
+      DTS:From="Package\load_incontact_dimPointOfContact"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 32"
+      DTS:To="Package\load_incontact_factCDR" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 33]"
+      DTS:CreationName=""
+      DTS:DTSID="{CBD30F97-05B9-46E0-8EEA-2DF4FCBBDAAA}"
+      DTS:From="Package\load_incontact_dimDisposition"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 33"
+      DTS:To="Package\load_incontact_factCDR" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{B6C63935-9E1A-4AA1-ABA8-CB8229C2C1E8}"
+      DTS:From="Package\extract_incontact_mediaType"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 4"
+      DTS:To="Package\extract_incontact_skill" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 5]"
+      DTS:CreationName=""
+      DTS:DTSID="{EC3542D4-D137-4346-889E-A4C1A2D4BF10}"
+      DTS:From="Package\extract_incontact_skill"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 5"
+      DTS:To="Package\extract_incontact_agentStateCode" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 6]"
+      DTS:CreationName=""
+      DTS:DTSID="{EB7772A9-59FB-4F7E-836A-106128EFC711}"
+      DTS:From="Package\extract_incontact_agentStateCode"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 6"
+      DTS:To="Package\extract_incontact_PointOfContact" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 7]"
+      DTS:CreationName=""
+      DTS:DTSID="{78497647-B892-4AFE-8AE7-149918679CB3}"
+      DTS:From="Package\extract_incontact_team"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 7"
+      DTS:To="Package\transform_incontact_dimTeam" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 8]"
+      DTS:CreationName=""
+      DTS:DTSID="{415D24E2-0A34-4BBB-81DE-D1B031813384}"
+      DTS:From="Package\extract_incontact_agent"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 8"
+      DTS:To="Package\transform_incontact_dimAgent" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 9]"
+      DTS:CreationName=""
+      DTS:DTSID="{99274898-65AA-4F21-969E-5FFD900073A1}"
+      DTS:From="Package\extract_incontact_campaign"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 9"
+      DTS:To="Package\transform_incontact_dimCampaign" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="64" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="255,42"
+          Id="Package\extract_incontact_agent"
+          TopLeft="399,81.5" />
+        <NodeLayout
+          Size="255,42"
+          Id="Package\extract_incontact_agentStateCode"
+          TopLeft="409,458" />
+        <NodeLayout
+          Size="255,42"
+          Id="Package\extract_incontact_campaign"
+          TopLeft="409,223" />
+        <NodeLayout
+          Size="255,42"
+          Id="Package\extract_inContact_cdrPlusDisposition"
+          TopLeft="405.666666666667,618.111111111111" />
+        <NodeLayout
+          Size="255,42"
+          Id="Package\extract_incontact_mediaType"
+          TopLeft="406,301" />
+        <NodeLayout
+          Size="255,42"
+          Id="Package\extract_incontact_PointOfContact"
+          TopLeft="404,535" />
+        <NodeLayout
+          Size="255,42"
+          Id="Package\extract_incontact_skill"
+          TopLeft="407,377" />
+        <NodeLayout
+          Size="255,42"
+          Id="Package\extract_incontact_team"
+          TopLeft="403,155" />
+        <NodeLayout
+          Size="183,42"
+          Id="Package\Get Auth Token"
+          TopLeft="50,19" />
+        <NodeLayout
+          Size="198,42"
+          Id="Package\load_incontact_dimAgent"
+          TopLeft="1134.75,81.3333333333341" />
+        <NodeLayout
+          Size="189,42"
+          Id="Package\load_incontact_dimAgentStateCode"
+          TopLeft="1139,459.333333333334" />
+        <NodeLayout
+          Size="217,42"
+          Id="Package\load_incontact_dimCampaign"
+          TopLeft="1130,224.333333333334" />
+        <NodeLayout
+          Size="189,42"
+          Id="Package\load_incontact_dimDisposition"
+          TopLeft="1142,616.333333333334" />
+        <NodeLayout
+          Size="221,42"
+          Id="Package\load_incontact_dimMediaType"
+          TopLeft="1132,306.333333333334" />
+        <NodeLayout
+          Size="189,42"
+          Id="Package\load_incontact_dimPointOfContact"
+          TopLeft="1142,539.333333333334" />
+        <NodeLayout
+          Size="189,42"
+          Id="Package\load_incontact_dimSkill"
+          TopLeft="1128,381.333333333334" />
+        <NodeLayout
+          Size="197,42"
+          Id="Package\load_incontact_dimTeam"
+          TopLeft="1129,151.333333333334" />
+        <NodeLayout
+          Size="191,42"
+          Id="Package\load_incontact_factCDR"
+          TopLeft="1438.57142857143,703.476190476191" />
+        <NodeLayout
+          Size="252,42"
+          Id="Package\transform_incontact_dimAgent"
+          TopLeft="774.75,83.75" />
+        <NodeLayout
+          Size="252,42"
+          Id="Package\transform_incontact_dimAgentStateCode"
+          TopLeft="790,461" />
+        <NodeLayout
+          Size="252,42"
+          Id="Package\transform_incontact_dimCampaign"
+          TopLeft="782,224" />
+        <NodeLayout
+          Size="247,42"
+          Id="Package\transform_incontact_dimDisposition"
+          TopLeft="784.444444444444,619" />
+        <NodeLayout
+          Size="252,42"
+          Id="Package\transform_incontact_dimMediaType"
+          TopLeft="782,304" />
+        <NodeLayout
+          Size="267,42"
+          Id="Package\transform_incontact_dimPointOfContact"
+          TopLeft="787,540" />
+        <NodeLayout
+          Size="252,42"
+          Id="Package\transform_incontact_dimSkill"
+          TopLeft="782,383" />
+        <NodeLayout
+          Size="252,42"
+          Id="Package\transform_incontact_dimTeam"
+          TopLeft="780,151" />
+        <NodeLayout
+          Size="219,42"
+          Id="Package\transform_incontact_FactCDR"
+          TopLeft="785.555555555556,694.333333333334" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="233,40">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="166,62.5"
+              Start="0,0"
+              End="158.5,62.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="79,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="79,0"
+                    Point2="83,0"
+                    Point3="83,4" />
+                  <mssgle:LineSegment
+                    End="83,58.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="83,58.5"
+                    Point2="83,62.5"
+                    Point3="87,62.5" />
+                  <mssgle:LineSegment
+                    End="158.5,62.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 10]"
+          TopLeft="661,323.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="121,0"
+              Start="0,0"
+              End="113.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="113.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 11]"
+          TopLeft="662,401">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="120,0"
+              Start="0,0"
+              End="112.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="112.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 12]"
+          TopLeft="664,480.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="126,0"
+              Start="0,0"
+              End="118.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="118.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 13]"
+          TopLeft="532.333333333333,577">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,41.111111111111"
+              Start="0,0"
+              End="0,33.611111111111">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,33.611111111111" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 14]"
+          TopLeft="659,558.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="128,0"
+              Start="0,0"
+              End="120.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="120.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 15]"
+          TopLeft="660.666666666667,639.555555555555">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="123.777777777777,0"
+              Start="0,0"
+              End="116.277777777777,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="116.277777777777,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 16]"
+          TopLeft="533.166666666667,660.111111111111">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="361.888888888889,34.2222222222231"
+              Start="0,0"
+              End="361.888888888889,26.7222222222231">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,13.1111111111115" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,13.1111111111115"
+                    Point2="0,17.1111111111115"
+                    Point3="4,17.1111111111115" />
+                  <mssgle:LineSegment
+                    End="357.888888888889,17.1111111111115" />
+                  <mssgle:CubicBezierSegment
+                    Point1="357.888888888889,17.1111111111115"
+                    Point2="361.888888888889,17.1111111111115"
+                    Point3="361.888888888889,21.1111111111115" />
+                  <mssgle:LineSegment
+                    End="361.888888888889,26.7222222222231" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 17]"
+          TopLeft="1026.75,103.541666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="108,0"
+              Start="0,0"
+              End="100.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="100.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 18]"
+          TopLeft="1032,172.166666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="97,0"
+              Start="0,0"
+              End="89.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="89.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 19]"
+          TopLeft="1034,245.166666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="96,0"
+              Start="0,0"
+              End="88.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="88.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="533.5,197">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,26"
+              Start="0,0"
+              End="0,18.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 20]"
+          TopLeft="1034,326.166666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="98,0"
+              Start="0,0"
+              End="90.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="90.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 21]"
+          TopLeft="1034,403.166666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="94,0"
+              Start="0,0"
+              End="86.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="86.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 22]"
+          TopLeft="1042,481.166666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="97,0"
+              Start="0,0"
+              End="89.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="89.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 23]"
+          TopLeft="1054,560.666666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="88,0"
+              Start="0,0"
+              End="80.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="80.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 24]"
+          TopLeft="1031.44444444444,638.666666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="110.555555555556,0"
+              Start="0,0"
+              End="103.055555555556,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="103.055555555556,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 25]"
+          TopLeft="1004.55555555556,715.333333333334">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="434.015873015873,9.14285714285711"
+              Start="0,0"
+              End="426.515873015873,9.14285714285711">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="213.007936507936,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="213.007936507936,0"
+                    Point2="217.007936507936,0"
+                    Point3="217.007936507936,4" />
+                  <mssgle:LineSegment
+                    End="217.007936507936,5.14285714285711" />
+                  <mssgle:CubicBezierSegment
+                    Point1="217.007936507936,5.14285714285711"
+                    Point2="217.007936507936,9.14285714285711"
+                    Point3="221.007936507936,9.14285714285711" />
+                  <mssgle:LineSegment
+                    End="426.515873015873,9.14285714285711" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 26]"
+          TopLeft="1233.75,123.333333333334">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="300.321428571429,580.142857142857"
+              Start="0,0"
+              End="300.321428571429,572.642857142857">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,286.071428571429" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,286.071428571429"
+                    Point2="0,290.071428571429"
+                    Point3="4,290.071428571429" />
+                  <mssgle:LineSegment
+                    End="296.321428571429,290.071428571429" />
+                  <mssgle:CubicBezierSegment
+                    Point1="296.321428571429,290.071428571429"
+                    Point2="300.321428571429,290.071428571429"
+                    Point3="300.321428571429,294.071428571429" />
+                  <mssgle:LineSegment
+                    End="300.321428571429,572.642857142857" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 27]"
+          TopLeft="1227.5,193.333333333334">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="260.821428571429,510.142857142857"
+              Start="0,0"
+              End="260.821428571429,502.642857142857">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,331.412343250553" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,331.412343250553"
+                    Point2="0,335.412343250553"
+                    Point3="4,335.412343250553" />
+                  <mssgle:LineSegment
+                    End="256.821428571429,335.412343250553" />
+                  <mssgle:CubicBezierSegment
+                    Point1="256.821428571429,335.412343250553"
+                    Point2="260.821428571429,335.412343250553"
+                    Point3="260.821428571429,339.412343250553" />
+                  <mssgle:LineSegment
+                    End="260.821428571429,502.642857142857" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 28]"
+          TopLeft="1238.5,266.333333333334">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="341.321428571429,437.142857142857"
+              Start="0,0"
+              End="341.321428571429,429.642857142857">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,283.415785591345" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,283.415785591345"
+                    Point2="0,287.415785591345"
+                    Point3="4,287.415785591345" />
+                  <mssgle:LineSegment
+                    End="337.321428571429,287.415785591345" />
+                  <mssgle:CubicBezierSegment
+                    Point1="337.321428571429,287.415785591345"
+                    Point2="341.321428571429,287.415785591345"
+                    Point3="341.321428571429,291.415785591345" />
+                  <mssgle:LineSegment
+                    End="341.321428571429,429.642857142857" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 29]"
+          TopLeft="1242.5,348.333333333334">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="360.196428571429,355.142857142857"
+              Start="0,0"
+              End="360.196428571429,347.642857142857">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,273.149277688603" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,273.149277688603"
+                    Point2="0,277.149277688603"
+                    Point3="4,277.149277688603" />
+                  <mssgle:LineSegment
+                    End="356.196428571429,277.149277688603" />
+                  <mssgle:CubicBezierSegment
+                    Point1="356.196428571429,277.149277688603"
+                    Point2="360.196428571429,277.149277688603"
+                    Point3="360.196428571429,281.149277688603" />
+                  <mssgle:LineSegment
+                    End="360.196428571429,347.642857142857" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="535,265">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,36"
+              Start="0,0"
+              End="0,28.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 30]"
+          TopLeft="1222.5,423.333333333334">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="242.946428571429,280.142857142857"
+              Start="0,0"
+              End="242.946428571429,272.642857142857">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,214.620166350503" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,214.620166350503"
+                    Point2="0,218.620166350503"
+                    Point3="4,218.620166350503" />
+                  <mssgle:LineSegment
+                    End="238.946428571429,218.620166350503" />
+                  <mssgle:CubicBezierSegment
+                    Point1="238.946428571429,218.620166350503"
+                    Point2="242.946428571429,218.620166350503"
+                    Point3="242.946428571429,222.620166350503" />
+                  <mssgle:LineSegment
+                    End="242.946428571429,272.642857142857" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 31]"
+          TopLeft="1233.5,501.333333333334">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="277.696428571429,202.142857142857"
+              Start="0,0"
+              End="277.696428571429,194.642857142857">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,110.823154540627" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,110.823154540627"
+                    Point2="0,114.823154540627"
+                    Point3="4,114.823154540627" />
+                  <mssgle:LineSegment
+                    End="273.696428571429,114.823154540627" />
+                  <mssgle:CubicBezierSegment
+                    Point1="273.696428571429,114.823154540627"
+                    Point2="277.696428571429,114.823154540627"
+                    Point3="277.696428571429,118.823154540627" />
+                  <mssgle:LineSegment
+                    End="277.696428571429,194.642857142857" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 32]"
+          TopLeft="1236.5,581.333333333334">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="320.446428571429,122.142857142857"
+              Start="0,0"
+              End="320.446428571429,114.642857142857">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,65.3807753584705" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,65.3807753584705"
+                    Point2="0,69.3807753584705"
+                    Point3="4,69.3807753584705" />
+                  <mssgle:LineSegment
+                    End="316.446428571429,69.3807753584705" />
+                  <mssgle:CubicBezierSegment
+                    Point1="316.446428571429,69.3807753584705"
+                    Point2="320.446428571429,69.3807753584705"
+                    Point3="320.446428571429,73.3807753584705" />
+                  <mssgle:LineSegment
+                    End="320.446428571429,114.642857142857" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 33]"
+          TopLeft="1236.5,658.333333333334">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="320.446428571429,45.1428571428571"
+              Start="0,0"
+              End="320.446428571429,37.6428571428571">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.6424853956452" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,21.6424853956452"
+                    Point2="0,25.6424853956452"
+                    Point3="4,25.6424853956452" />
+                  <mssgle:LineSegment
+                    End="316.446428571429,25.6424853956452" />
+                  <mssgle:CubicBezierSegment
+                    Point1="316.446428571429,25.6424853956452"
+                    Point2="320.446428571429,25.6424853956452"
+                    Point3="320.446428571429,29.6424853956452" />
+                  <mssgle:LineSegment
+                    End="320.446428571429,37.6428571428571" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="534,343">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,34"
+              Start="0,0"
+              End="0,26.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 5]"
+          TopLeft="535.5,419">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,39"
+              Start="0,0"
+              End="0,31.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 6]"
+          TopLeft="534,500">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,35"
+              Start="0,0"
+              End="0,27.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,27.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 7]"
+          TopLeft="658,174">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="122,0"
+              Start="0,0"
+              End="114.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="114.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 8]"
+          TopLeft="654,103.625">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="120.75,0"
+              Start="0,0"
+              End="113.25,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="113.25,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 9]"
+          TopLeft="664,244.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="118,0"
+              Start="0,0"
+              End="110.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="110.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="528.5,123.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,31.5"
+              Start="0,0"
+              End="0,24">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

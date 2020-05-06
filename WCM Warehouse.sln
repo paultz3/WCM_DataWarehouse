@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29926.136
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "WCM Warehouse", "WCM Warehouse\WCM Warehouse.dtproj", "{F9D93490-C1AB-4082-B878-E396F584E45D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Development|Default = Development|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F9D93490-C1AB-4082-B878-E396F584E45D}.Development|Default.ActiveCfg = Development
+		{F9D93490-C1AB-4082-B878-E396F584E45D}.Development|Default.Build.0 = Development
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1D459517-9781-4E6A-B756-81B21E5A3F43}
+	EndGlobalSection
+EndGlobal
